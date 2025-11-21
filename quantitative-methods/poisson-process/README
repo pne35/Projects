@@ -1,4 +1,4 @@
-oisson Processes & Exponential Waiting Times
+Poisson Processes & Exponential Waiting Times
 Overview
 
 This project documents my understanding and implementation of Poisson processes, a fundamental stochastic model used in quantitative finance. I focus on both the mathematical foundations and practical simulation techniques used in quant work, market microstructure, and risk modelling.
