@@ -1,1 +1,123 @@
+oisson Processes & Exponential Waiting Times
+Overview
 
+This project documents my understanding and implementation of Poisson processes, a fundamental stochastic model used in quantitative finance. I focus on both the mathematical foundations and practical simulation techniques used in quant work, market microstructure, and risk modelling.
+
+A Poisson process is used to model events that:
+
+Occur randomly in time
+
+Are independent of previous events
+
+Have a constant average rate λ
+
+Allow at most one event in an infinitesimally small interval
+
+Have exponential waiting times between events
+
+Understanding these principles is essential for modelling limit order arrivals, price jumps, default events, and other market phenomena.
+
+1. Mathematical Foundations
+1.1 Event Probability in a Small Interval
+
+For a small time interval Δt:
+
+Probability of one event:
+P(1 event in Δt)=λΔt
+
+Probability of zero events:
+P(0 events)=1−λΔt
+
+Probability of two or more events is negligible:
+P(≥2 events)≈0 (order (Δt)
+
+This “no multiple events in a tiny interval” assumption is what allows the Poisson process to emerge.
+
+1.2 Deriving the Probability of No Events in Time 𝑡
+
+Divide time t into n small pieces, each of length:
+Δt= t/n
+	
+Probability of no events in one interval: 1−λΔt
+
+Probability of no events in all n intervals: (1−λΔt)^n
+
+Taking the limit as n→∞ (Δ𝑡→0):
+
+lim  (1−𝜆𝑡/𝑛)^𝑛= e^−λt
+⁡𝑛→∞
+
+This gives the core formula:
+
+P(no events in time t)=e^−λt
+
+1.3 Exponential Waiting Times
+
+The time until the next event, 
+T, is exponentially distributed:
+P(T>t)=e^−λt
+
+Expected waiting time:
+E[T]=1/λ
+	​
+This exponential distribution is memoryless, meaning the process “forgets” how long it’s been since the last event. This property is unique to the exponential distribution, which is why Poisson processes are widely used in modelling markets.
+
+2. Why This Matters in Quant Finance
+
+Poisson processes appear in:
+
+Limit order arrivals
+
+Market orders hitting the book
+
+Jump-diffusion models
+
+Credit defaults / counterparty risk
+
+Order flow imbalance models
+
+Operational risk event modelling
+
+High-frequency market microstructure
+
+Even when real markets are more complicated, Poisson/exponential models form the backbone of many first-approximation models.
+
+3. Simulation (Python)
+
+This folder will include code that demonstrates:
+
+Sampling interarrival times using:
+
+T=−1/λ*ln(U)
+
+Simulating a Poisson process by accumulating exponential waiting times
+
+Using vectorized NumPy simulations
+
+Plotting histograms vs. theoretical distributions
+
+Simulating order arrivals with a given λ
+
+These simulations help connect the maths to real data and real quant applications.
+
+4. Structure of This Folder
+poisson-process/
+│
+├── README.md                ← This document
+├── poisson_theory_notes.md  ← Deeper mathematical notes (coming soon)
+├── simulation.ipynb         ← Python simulations and plots
+└── poisson.py               ← Clean implementation of Poisson process classes
+
+5. Future Extensions
+
+Planned additions:
+
+Non-homogeneous Poisson processes (λ=λ(t))
+
+Hawkes processes (self-exciting arrival models)
+
+Applications to market order flow
+
+Link to Brownian motion + jump-diffusion models
+
+-- I apologise for any wierd formatting in the equations it was pasted wierd from latex.
