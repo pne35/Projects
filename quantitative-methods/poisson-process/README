@@ -104,8 +104,8 @@ These simulations help connect the maths to real data and real quant application
 poisson-process/
 │
 ├── README.md                ← This document
-├── poisson_theory_notes.md  ← Deeper mathematical notes (coming soon)
-├── simulation.ipynb         ← Python simulations and plots
+├── poisson-sim.py           ← Python simulations and plots
+├── CDF.py           		 ← Python simulations and graphs
 └── poisson.py               ← Clean implementation of Poisson process classes
 
 5. Future Extensions
