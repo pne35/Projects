@@ -1,1 +1,25 @@
+def func(n):
+    if n == 1:
+        return 1, False
+    if n % 2 == 1:
+        return 3*n + 1, True
+    return n // 2, True
 
+hs = 0
+hv = 0
+
+for start in range(1, 1_000_000):
+    count = 0
+    n = start
+    while True:
+        n, cont = func(n)
+        count += 1
+        if not cont:
+            break
+
+    if count > hs:
+        hs = count
+        hv = start
+
+print(hs, hv)
+#The code is slow and i really need to improve on my optimisation and comments which is what I will focus on more from now on
