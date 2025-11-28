@@ -1,0 +1,7 @@
+n = 2**1000
+print(n)
+total = 0
+for count in range(len(str(n))):
+    s = str(n)
+    total += int(s[count])
+print(total)
