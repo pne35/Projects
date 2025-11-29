@@ -1,0 +1,11 @@
+def factorial(n):
+    if n == 1:
+        return n
+    return (factorial(n-1)*n)
+n = factorial(100)
+total = 0
+for c in range(len(str(n))):
+    total += int(str(n)[c])
+
+print(total)
+#Pretty easy question, I think its pretty optimal aswell.
