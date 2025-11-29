@@ -1,0 +1,16 @@
+triangle = []
+with open("Question 18 Txt file.txt") as f:
+    for line in f:
+        row = list(map(int, line.split()))
+        triangle.append(row)
+
+for row in range(len(triangle) - 2, -1, -1):
+    for col in range(len(triangle[row])):
+        triangle[row][col] += max(
+            triangle[row+1][col],
+            triangle[row+1][col+1]
+        )
+
+print(triangle[0][0])
+#This one was difficult however I feel its very optimised using a DP solution to find the answer.
+#The text file is just the triangle numbers.
