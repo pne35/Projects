@@ -1,0 +1,17 @@
+from functools import lru_cache
+
+@lru_cache
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    return n * factorial(n - 1)
+
+def curious(n):
+    return sum(factorial(int(d)) for d in str(n)) == n
+
+for x in range(3,2540160):
+    if curious(x):
+        print(x)
+
+print(curious(145))
+#the main challenge was finding the upper bound which is 7*9! Overall a pretty difficult challenge
