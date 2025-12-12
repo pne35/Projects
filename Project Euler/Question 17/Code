@@ -1,0 +1,50 @@
+# Compute the total number of letters used when writing 1 to 1000 in words
+# (British usage: includes "and", excludes spaces & hyphens)
+
+ones = {
+    0: '',
+    1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five',
+    6: 'six', 7: 'seven', 8: 'eight', 9: 'nine', 10: 'ten',
+    11: 'eleven', 12: 'twelve', 13: 'thirteen', 14: 'fourteen', 15: 'fifteen',
+    16: 'sixteen', 17: 'seventeen', 18: 'eighteen', 19: 'nineteen'
+}
+
+tens = {
+    20: 'twenty', 30: 'thirty', 40: 'forty', 50: 'fifty',
+    60: 'sixty', 70: 'seventy', 80: 'eighty', 90: 'ninety'
+}
+
+def number_to_words(n: int) -> str:
+    if n == 1000:
+        return "one thousand"
+    
+    words = []
+    hundreds_digit = n // 100
+    remainder = n % 100
+    
+    if hundreds_digit:
+        words.append(ones[hundreds_digit])
+        words.append("hundred")
+        if remainder:
+            words.append("and")  # British usage
+    
+    if remainder:
+        if remainder < 20:
+            words.append(ones[remainder])
+        else:
+            tens_digit = remainder // 10 * 10
+            unit = remainder % 10
+            if unit == 0:
+                words.append(tens[tens_digit])
+            else:
+                # hyphen used here (ignored when counting letters)
+                words.append(f"{tens[tens_digit]}-{ones[unit]}")
+    
+    return " ".join(words)
+
+def letter_count(word: str) -> int:
+    return sum(1 for ch in word if ch.isalpha())
+
+total_letters = sum(letter_count(number_to_words(i)) for i in range(1, 1001))
+
+print(total_letters)
